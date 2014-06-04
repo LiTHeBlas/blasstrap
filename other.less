@@ -1,0 +1,41 @@
+body {
+  padding-top: (@navbar-height + @navbar-main-extra-padding-vertical * 2);
+}
+
+header > .page-header {
+  margin-top: 0;
+  background-color: lighten(@lithe-offyellow, 10%);
+  color: @lithe-blue;
+}
+
+@navbar-main-extra-padding-vertical:       30px;
+@navbar-brand-logo-height: (@line-height-computed * 3);
+@navbar-brand-height: (@navbar-brand-logo-height + @line-height-computed);
+
+@navbar-main-nav-padding-vertical: 10px;
+@navbar-main-nav-padding-horizontal: 15px;
+
+.navbar-main {
+  .navbar-nav {
+    padding-top: (@navbar-height - @navbar-main-nav-padding-vertical * 2 - @line-height-computed) / 2;
+    padding-bottom: (@navbar-height - @navbar-main-nav-padding-vertical * 2 - @line-height-computed) / 2;
+    > li > a {
+      padding: @navbar-main-nav-padding-vertical @navbar-main-nav-padding-horizontal;
+    }
+  }
+  .navbar-brand {
+    padding: 0 @navbar-padding-horizontal;
+    .logo {
+      height: @navbar-brand-logo-height;
+    }
+    small {
+      display: block;
+    }
+  }
+  padding: @navbar-main-extra-padding-vertical 0px;
+}
+
+.navbar-nav > li > a {
+  text-transform: uppercase;
+  font-weight: 600;
+}
