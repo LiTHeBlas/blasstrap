@@ -1,41 +1,225 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
-  padding-top: (@navbar-height + @navbar-main-extra-padding-vertical * 2);
+    // Only if using navbar-fixed-top
+    margin-top: (@navbar-height + @navbar-main-extra-padding-vertical * 2);
+
+    margin-bottom: @footer-height;
+    padding-bottom: @line-height-computed;
+
+    @media (max-width: @screen-sm-max) {
+        // Only if using navbar-fixed-top
+        margin-top: (@navbar-height-small + @navbar-main-extra-padding-vertical-small * 2);
+    }
 }
 
-header > .page-header {
-  margin-top: 0;
-  background-color: lighten(@lithe-offyellow, 10%);
-  color: @lithe-blue;
+h1, h2, h3, h4, h5, h6 {
+    > small {
+        font-weight: 300;
+    }
 }
 
-@navbar-main-extra-padding-vertical:       30px;
-@navbar-brand-logo-height: (@line-height-computed * 3);
-@navbar-brand-height: (@navbar-brand-logo-height + @line-height-computed);
-
-@navbar-main-nav-padding-vertical: 10px;
-@navbar-main-nav-padding-horizontal: 15px;
+.page-title {
+    .page-header();
+    margin-top: 0;
+    background-color: lighten(@lithe-offyellow, 10%);
+    color: @lithe-blue;
+    border-bottom: @lithe-offyellow;
+}
 
 .navbar-main {
-  .navbar-nav {
-    padding-top: (@navbar-height - @navbar-main-nav-padding-vertical * 2 - @line-height-computed) / 2;
-    padding-bottom: (@navbar-height - @navbar-main-nav-padding-vertical * 2 - @line-height-computed) / 2;
-    > li > a {
-      padding: @navbar-main-nav-padding-vertical @navbar-main-nav-padding-horizontal;
+    .navbar-toggle {
+        @media (max-width: @screen-xs-max) {
+            .navbar-vertical-align-xs(34px);
+        }
     }
-  }
-  .navbar-brand {
-    padding: 0 @navbar-padding-horizontal;
-    .logo {
-      height: @navbar-brand-logo-height;
+    .navbar-nav {
+        padding-top: (@navbar-height - @navbar-main-nav-padding-vertical * 2 - @line-height-computed) / 2;
+        padding-bottom: (@navbar-height - @navbar-main-nav-padding-vertical * 2 - @line-height-computed) / 2;
+        > li > a {
+            padding: @navbar-main-nav-padding-vertical @navbar-main-nav-padding-horizontal;
+        }
+
+        // Minska storleken på paddingen vid liten skärm
+        @media (max-width: @screen-sm-max) {
+            padding-top: (@navbar-height-small - @navbar-main-nav-padding-vertical * 2 - @line-height-computed-small) / 2;
+            padding-bottom: (@navbar-height-small - @navbar-main-nav-padding-vertical * 2 - @line-height-computed-small) / 2;
+        }
     }
-    small {
-      display: block;
+    .navbar-brand {
+        padding: 0 @navbar-padding-horizontal;
+
+        @media (max-width: @screen-sm-max) {
+            height: @navbar-height-small;
+            //max-width: 80%; // Ser till att det alltid finns plats för menyknappen, även fast det blir lite fult
+        }
+
+        @media (max-width: 400px) {
+            max-width: 80%;
+        }
+
+        .logo {
+            height: @navbar-brand-logo-height;
+
+            @media (max-width: @screen-sm-max) {
+                height: @navbar-brand-logo-height-small;
+            }
+        }
+        small {
+            display: block;
+
+            @media (max-width: @screen-sm-max) {
+                font-size: small;
+                /*white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;*/
+            }
+
+            @media (max-width: 400px) {
+                display: none;
+            }
+
+            &.mini {
+                display: none;
+                @media (max-width: 400px) {
+                    display: block;
+                }
+            }
+        }
     }
-  }
-  padding: @navbar-main-extra-padding-vertical 0px;
+    padding: @navbar-main-extra-padding-vertical 0px;
+    @media (max-width: @screen-sm-max) {
+        padding: @navbar-main-extra-padding-vertical-small 0px;
+    }
+}
+
+.dropdown-header-link {
+    .dropdown-header();
+    padding-right: 0;
+    padding-left: 0;
+    > a {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
 }
 
 .navbar-nav > li > a {
-  text-transform: uppercase;
-  font-weight: 600;
+    text-transform: uppercase;
+    font-weight: 600;
 }
+
+.page-footer {
+    position: absolute;
+    padding-top: @line-height-computed;
+    padding-bottom: 0;
+    bottom: 0;
+    width: 100%;
+    height: @footer-height;
+    color: @lithe-offyellow;
+    background-color: @lithe-blue;
+    p {
+        font-weight: 300;
+    }
+    strong {
+        font-weight: 600;
+    }
+    a {
+        color: inherit;
+    }
+    img.blottartuba {
+        position: absolute;
+        bottom: -(@footer-height - @line-height-computed);
+    }
+    .row {
+        position: relative;
+        .pull-down {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        .contact-links {
+            margin-bottom: @line-height-computed;
+        }
+    }
+}
+
+.carousel-fade {
+    .carousel-inner {
+        .item {
+            opacity: 0;
+            transition-property: opacity;
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        .active.left,
+        .active.right {
+            left: 0;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .next.left,
+        .prev.right {
+            opacity: 1;
+        }
+    }
+
+    .carousel-control {
+        z-index: 2;
+    }
+}
+
+.carousel-inner > .item > img {
+    min-width: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    vertical-align: middle;
+}
+
+.pusher > .item {
+    text-align: center;
+    margin-bottom: (@line-height-computed * 2);
+    > img {
+        width: 300px;
+        height: 300px;
+        .img-responsive();
+        .img-circle();
+        .center-block();
+    }
+}
+
+
+// dCMS ger bilder denna klass, så vi gör en mixin från Bootstraps motsvarighet
+.plugin_picture {
+    img {
+        .img-responsive();
+        .img-thumbnail();
+    }
+
+    &.align-right > img {
+        .pull-right();
+        margin-left: (@padding-large-horizontal * 2);
+    }
+
+    &.align-left > img {
+        .pull-left();
+        margin-right: (@padding-large-horizontal * 2);
+    }
+
+    &.align-center > img {
+        .center-block();
+        margin-top: @padding-large-vertical;
+        margin-bottom: @padding-large-vertical;
+    }
+}
+
+

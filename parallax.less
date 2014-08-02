@@ -1,0 +1,23 @@
+.parallax-content {
+    .jumbotron();
+    margin-bottom: 0;
+    background: @body-bg;
+
+    a.btn {
+        .btn-lg();
+    }
+
+    .img {
+        .hidden-xs();
+        .hidden-sm();
+        .make-md-column(4);
+        img {
+            // This is written specifically written for square images. It might get weird in other cases.
+            .img-responsive();
+            min-width: 100%;
+        }
+    }
+    .text {
+        .make-md-column(8);
+    }
+}

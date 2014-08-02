@@ -18,8 +18,7 @@
 @lithe-brown:           #7b3919; // Pantone P 32-8 C
 
 @brand-primary:         @lithe-blue; // Pantone P 102-8 C
-// @brand-success:         #e5e23c; // Pantone P 166-8 C
-@brand-success:         #c9d641; // Pantone P 
+@brand-success:         #c9d641; // Pantone P 163-8 C
 @brand-info:            #0093c6; // Pantone P 112-7 C
 @brand-warning:         #f2b738; // Pantone P 10-8 C
 @brand-danger:          #d62c3e; // Pantone P 52-8 C
@@ -65,6 +64,7 @@
 @line-height-base:        1.428571429; // 20/14
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
 @line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+@line-height-computed-small:    floor((@font-size-small * @line-height-small));
 
 //** By default, this inherits from the `<body>`.
 @headings-font-family:    inherit;
@@ -117,6 +117,8 @@
 @caret-width-base:          4px;
 //** Carets increase slightly in size for larger components.
 @caret-width-large:         5px;
+
+@footer-height:             @line-height-computed * 9;
 
 
 //== Tables
@@ -339,8 +341,19 @@
 //
 //##
 
+@navbar-main-extra-padding-vertical:       (@line-height-computed * 1);
+@navbar-brand-logo-height:                 (@line-height-computed * 2);
+@navbar-brand-height:                      (@navbar-brand-logo-height);
+@navbar-main-extra-padding-vertical-small: @line-height-computed-small;
+@navbar-brand-logo-height-small:           (@line-height-computed-small * 2);
+@navbar-brand-height-small:                (@navbar-brand-logo-height-small);
+
+@navbar-main-nav-padding-vertical:         10px;
+@navbar-main-nav-padding-horizontal:       15px;
+
 // Basics of a navbar
 @navbar-height:                    @navbar-brand-height;
+@navbar-height-small:              @navbar-brand-height-small;
 @navbar-margin-bottom:             @line-height-computed;
 @navbar-border-radius:             @border-radius-base;
 @navbar-padding-horizontal:        floor((@grid-gutter-width / 2));
